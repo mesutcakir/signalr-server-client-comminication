@@ -1,5 +1,6 @@
 ﻿using Mc.Signalr.Communication.Server.Model;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Threading.Tasks;
 
@@ -28,8 +29,9 @@ namespace Mc.Signalr.Communication.Server.Hubs
         public override Task OnConnected()
         {
             Console.WriteLine("Hub OnConnected {0}\n", Context.ConnectionId);
-            return (base.OnConnected());
+            return base.OnConnected();
         }
+
         public override Task OnDisconnected(bool stopCalled)
         {
             Console.WriteLine("Hub OnDisconnected {0}\n", Context.ConnectionId);

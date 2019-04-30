@@ -11,12 +11,12 @@ namespace Mc.Signalr.Communication.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Starting client  http://localhost:8089");
+            Console.WriteLine("Starting client  " + HubSetting.HubUrl);
 
-            var hubConnection = new HubConnection("http://localhost:8089/");
+            var hubConnection = new HubConnection(HubSetting.HubUrl);
             //hubConnection.TraceLevel = TraceLevels.All;
             //hubConnection.TraceWriter = Console.Out;
-            IHubProxy myHubProxy = hubConnection.CreateHubProxy("ChannelHub");
+            IHubProxy myHubProxy = hubConnection.CreateHubProxy(HubSetting.HubName);
 
             myHubProxy.On<string, string>("addMessage", (name, message) => Console.Write("Recieved addMessage: " + name + ": " + message + "\n"));
             myHubProxy.On("heartbeat", () => Console.Write("Recieved heartbeat \n"));
